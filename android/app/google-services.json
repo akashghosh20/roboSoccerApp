@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "286134910238",
+    "firebase_url": "https://roboticarm-57eec-default-rtdb.firebaseio.com",
+    "project_id": "roboticarm-57eec",
+    "storage_bucket": "roboticarm-57eec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286134910238:android:872b489d98df1a61f85d0f",
+        "android_client_info": {
+          "package_name": "com.example.roboticarm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdWqxCUPBj5FZgryTDYH4oDce31nB52B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

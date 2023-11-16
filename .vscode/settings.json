@@ -1,0 +1,5 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cmake.sourceDirectory": "C:/Users/a/Desktop/Automation Lab/RoboticArmApp/roboticarmapp/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}
