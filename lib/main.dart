@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Robot Soccer Control',
+      title: 'Robot Soccer Controller',
       home: ControlPage(),
     );
   }
@@ -45,7 +45,8 @@ class _ControlPageState extends State<ControlPage> {
       if (connection != null && connection!.isConnected && !_isButtonPressed) {
         _sendCommand('S'); // Send 'S' continuously when no button is pressed
       } else {
-        _sendCommandTimer?.cancel(); // Cancel the timer when a button is pressed
+        _sendCommandTimer
+            ?.cancel(); // Cancel the timer when a button is pressed
       }
     });
   }
