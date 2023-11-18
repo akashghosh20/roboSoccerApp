@@ -1,12 +1,16 @@
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:roboticarmapp/Spalash.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -14,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Robot Soccer Controller',
-      home: ControlPage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -143,6 +147,12 @@ class _ControlPageState extends State<ControlPage> {
   }
 
   Future<void> _startDiscovery() async {
+    // Check and request Bluetooth permissions
+    if (!(await Permission.bluetooth.request().isGranted)) {
+      showToast('Bluetooth permissions not granted.');
+      return;
+    }
+
     discoveredDevices.clear();
     try {
       if (await FlutterBluetoothSerial.instance.isAvailable == null) {
