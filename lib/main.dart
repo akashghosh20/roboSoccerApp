@@ -319,17 +319,22 @@ class _CircularButtonState extends State<CircularButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) {
-        setState(() {
-          _isPressed = true;
-        });
-        widget.onPressed(widget.command);
-        widget.onButtonPressed(true);
+        _onButtonPress(true);
       },
       onTapUp: (_) {
-        _resetButtonState();
+        _onButtonPress(false);
+        widget.onTapUp();
       },
       onTapCancel: () {
-        _resetButtonState();
+        _onButtonPress(false);
+        widget.onTapUp();
+      },
+      onLongPress: () {
+        _onButtonPress(true);
+      },
+      onLongPressUp: () {
+        _onButtonPress(false);
+        widget.onTapUp();
       },
       child: ElevatedButton(
         onPressed: () {
@@ -352,24 +357,38 @@ class _CircularButtonState extends State<CircularButton> {
     );
   }
 
+  void _onButtonPress(bool isPressed) {
+    setState(() {
+      _isPressed = isPressed;
+    });
+
+    if (_isPressed) {
+      widget.onPressed(widget.command);
+    } else {
+      _resetButtonState();
+    }
+
+    widget.onButtonPressed(_isPressed);
+  }
+
   void _resetButtonState() {
     setState(() {
       _isPressed = false;
     });
+
     widget.onPressed('S'); // Stop command when the button is released
-    widget.onTapUp(); // Call the provided onTapUp callback
     widget.onButtonPressed(false);
   }
 }
 
 List<Map<String, dynamic>> buttons = [
   {'label': 'F', 'command': 'F', 'angle': 0.0},
-  {'label': 'FL', 'command': 'l', 'angle': 315.0},
+  {'label': 'FL', 'command': 'G', 'angle': 315.0},
   {'label': 'S', 'command': 'S', 'angle': 180.0},
-  {'label': 'FR', 'command': 'r', 'angle': 45.0},
+  {'label': 'FR', 'command': 'I', 'angle': 45.0},
   {'label': 'L', 'command': 'L', 'angle': 270.0},
   {'label': 'R', 'command': 'R', 'angle': 90.0},
   {'label': 'B', 'command': 'B', 'angle': 180.0},
-  {'label': 'BL', 'command': 'b', 'angle': 225.0},
-  {'label': 'BR', 'command': 'I', 'angle': 135.0},
+  {'label': 'BL', 'command': 'H', 'angle': 225.0},
+  {'label': 'BR', 'command': 'J', 'angle': 135.0},
 ];
